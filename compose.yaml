@@ -1,0 +1,66 @@
+﻿services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    hostname: backend.ecommerce-order
+    image: luuthuong/dotnet-ecommerce-order:${TAG:-v1.1.0}
+    ports:
+      - "5000:80"
+      - "5001:443"
+    depends_on:
+      - sql-server
+    environment:
+      - ASPNETCORE_ENVIRONMENT=PRODUCTION
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://aspire-dashboard:18889
+      - OTEL_EXPORTER_OTLP_PROTOCOL=grpc
+      - ASPNETCORE_URLS=http://+:80;https://+:443
+    networks:
+      - ecommerce-network
+      
+  aspire-dashboard:
+    image: mcr.microsoft.com/dotnet/aspire-dashboard:9.0
+    environment:
+      DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS: true
+    ports:
+      - 18888:18888
+    networks:
+      - ecommerce-network
+        
+  frontend:
+    build:
+      context: client
+      dockerfile: Dockerfile
+      args:
+        - BACKEND_API_URL=https://localhost:5001/api/v1
+    image: luuthuong/next-ecommerce-order-client:${TAG:-v1.1.0}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - ecommerce-network
+
+  sql-server:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStr0ngP@ssw0rd
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql-data:/var/opt/mssql
+    networks:
+      - ecommerce-network
+    healthcheck:
+      test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "YourStr0ngP@ssw0rd" -Q "SELECT 1" || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  ecommerce-network:
+    driver: bridge
+
+volumes:
+  mssql-data:

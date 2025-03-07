@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 245, 245, 245;
+
+  --primary: 38, 153, 251;
+  --primary-foreground: 255, 255, 255;
+
+  --secondary: 255, 152, 0;
+  --secondary-foreground: 255, 255, 255;
+
+  --accent: 176, 176, 176;
+  --accent-foreground: 255, 255, 255;
+
+  --muted: 229, 231, 235;
+  --muted-foreground: 107, 114, 128;
+
+  --card: 255, 255, 255;
+  --card-foreground: 0, 0, 0;
+}
+
+.dark {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 30, 30, 30;
+
+  --primary: 38, 153, 251;
+  --primary-foreground: 255, 255, 255;
+
+  --secondary: 255, 152, 0;
+  --secondary-foreground: 255, 255, 255;
+
+  --accent: 176, 176, 176;
+  --accent-foreground: 255, 255, 255;
+
+  --muted: 51, 65, 85;
+  --muted-foreground: 156, 163, 175;
+
+  --card: 30, 41, 59;
+  --card-foreground: 255, 255, 255;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  min-height: 100dvh;
+}
+
+@layer base {
+  h1 {
+    @apply text-2xl font-bold md:text-3xl;
+  }
+  h2 {
+    @apply text-xl font-bold md:text-2xl;
+  }
+  h3 {
+    @apply text-lg font-semibold md:text-xl;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-md font-medium transition-colors;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/90;
+  }
+
+  .btn-outline {
+    @apply border border-input bg-background hover:bg-accent hover:text-accent-foreground;
+  }
+}

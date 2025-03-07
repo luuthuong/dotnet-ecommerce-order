@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <RootNamespace>ecommerce_order</RootNamespace>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="MediatR" Version="12.4.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.1.0" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.2" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.2" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.2">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.2" />
+        <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.11.2" />
+        <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.11.2" />
+        <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.11.1" />
+        <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="7.3.1" />
+        <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="7.3.1" />
+        <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="8.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="spa\src\app\features\products\products.routes.ts" />
+      <None Remove="spa\src\app\core\interceptors\error-handler.interceptor.ts" />
+      <None Remove="spa\README.md" />
+      <None Remove="spa\Dockerfile" />
+      <None Remove="spa\.dockerignore" />
+      <None Remove="spa\.editorconfig" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="spa\angular.json" />
+      <Content Remove="spa\.postcssrc.json" />
+    </ItemGroup>
+
+</Project>
