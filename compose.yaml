@@ -15,6 +15,9 @@
       - OTEL_EXPORTER_OTLP_ENDPOINT=http://aspire-dashboard:18889
       - OTEL_EXPORTER_OTLP_PROTOCOL=grpc
       - ASPNETCORE_URLS=http://+:80;https://+:443
+      - DatabaseProvider=Postgresql
+      - ConnectionStrings__EventStore=Server=sql-server;Database=ECommerceEventStore;User Id=sa;Password=YourStr0ngP@ssw0rd;TrustServerCertificate=True
+      - ConnectionStrings__QueryStore=Server=sql-server;Database=ECommerceEventStore;User Id=sa;Password=YourStr0ngP@ssw0rd;TrustServerCertificate=True
     networks:
       - ecommerce-network
       
@@ -57,6 +60,15 @@
       interval: 10s
       timeout: 5s
       retries: 5
+      
+  postgresql:
+    image: postgres:17.4
+    ports:
+      - 8080:5432
+    networks:
+      - ecommerce-network
+    environment:
+      - POSTGRES_PASSWORD=YourStr0ngP@ssw0rd
 
 networks:
   ecommerce-network:

@@ -48,7 +48,7 @@ public class OrderAggregate: AggregateRoot
         {
             AggregateId = Guid.NewGuid(),
             CustomerName = data.CustomerName,
-            OrderDate = DateTime.Now,
+            OrderDate = DateTime.UtcNow,
             Address = data.ShippingAddress,
             OrderItems = data.OrderItems
         };

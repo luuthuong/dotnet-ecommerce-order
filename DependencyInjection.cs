@@ -38,6 +38,8 @@ public static class DependencyInjection
             // cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
         });
 
+        string dbProvider = configuration.GetValue<string>("DatabaseProvider") ?? "Mssql";
+        
         string? eventStoreConnectionString = configuration.GetConnectionString("EventStore");
         string? queryStoreConnectionString = configuration.GetConnectionString("QueryStore");
 
@@ -46,33 +48,58 @@ public static class DependencyInjection
 
         services.AddDbContext<EventStoreDbContext>(options =>
         {
-            options.UseSqlServer(
-                    eventStoreConnectionString,
-                    sqlOptions =>
-                    {
-                        sqlOptions.EnableRetryOnFailure(
-                            maxRetryCount: 10,
-                            maxRetryDelay: TimeSpan.FromSeconds(30),
-                            errorNumbersToAdd: null);
+            if (dbProvider == "Mssql")
+            {
+                options.UseSqlServer(
+                        eventStoreConnectionString,
+                        sqlOptions =>
+                        {
+                            sqlOptions.EnableRetryOnFailure(
+                                maxRetryCount: 10,
+                                maxRetryDelay: TimeSpan.FromSeconds(30),
+                                errorNumbersToAdd: null);
 
-                        sqlOptions.CommandTimeout(60);
-                    })
-                .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+                            sqlOptions.CommandTimeout(60);
+                        })
+                    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+            }
+            else
+            {
+                options.UseNpgsql(eventStoreConnectionString, pgOptions =>
+                {
+                    pgOptions.EnableRetryOnFailure(maxRetryCount: 10, maxRetryDelay: TimeSpan.FromSeconds(30), null);
+                    pgOptions.CommandTimeout(60);
+                }).ConfigureWarnings(warnings => 
+                    warnings.Ignore(Microsoft.EntityFrameworkCore.Diagnostics.RelationalEventId.PendingModelChangesWarning)).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+            }
         });
 
         services.AddDbContext<QueryDbContext>(options =>
-            options.UseSqlServer(
-                    queryStoreConnectionString,
-                    sqlOptions =>
-                    {
-                        sqlOptions.EnableRetryOnFailure(
-                            maxRetryCount: 10,
-                            maxRetryDelay: TimeSpan.FromSeconds(30),
-                            errorNumbersToAdd: null);
+        {
+            if (dbProvider == "Mssql")
+            {
+                options.UseSqlServer(
+                        queryStoreConnectionString,
+                        sqlOptions =>
+                        {
+                            sqlOptions.EnableRetryOnFailure(
+                                maxRetryCount: 10,
+                                maxRetryDelay: TimeSpan.FromSeconds(30),
+                                errorNumbersToAdd: null);
 
-                        sqlOptions.CommandTimeout(60);
-                    })
-                .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+                            sqlOptions.CommandTimeout(60);
+                        })
+                    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+            }
+            else
+            {
+                options.UseNpgsql(queryStoreConnectionString, pgOptions =>
+                {
+                    pgOptions.EnableRetryOnFailure(maxRetryCount: 10, maxRetryDelay: TimeSpan.FromSeconds(30), null);
+                    pgOptions.CommandTimeout(60);
+                }).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+            }
+        });
 
         // Register repositories and services
         services.AddScoped<IEventStore, EventStore>();
