@@ -27,7 +27,7 @@ public class OrdersController(IMediator mediator, ILogger<OrdersController> logg
         {
             var command = new CreateOrderCommand
             {
-                CustomerId = request.CustomerId,
+                CustomerName = request.CustomerName,
                 ShippingAddress = new Address(
                     request.Address.Street, request.Address.City,
                     request.Address.State, request.Address.ZipCode,

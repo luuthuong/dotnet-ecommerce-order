@@ -23,7 +23,7 @@ public class QueryStore(QueryDbContext context, ILogger<QueryStore> logger) : IQ
         var result = new OrderDto
         {
             Id = order.Id,
-            CustomerId = order.CustomerId,
+            CustomerName = order.CustomerName,
             OrderDate = order.OrderDate,
             Status = order.Status,
             ShippingAddress = order.ShippingAddress,
@@ -47,23 +47,23 @@ public class QueryStore(QueryDbContext context, ILogger<QueryStore> logger) : IQ
         return result;
     }
 
-    public async Task<IEnumerable<OrderSummaryDto>> GetOrdersAsync(Guid? customerId = null,
+    public async Task<IEnumerable<OrderSummaryDto>> GetOrdersAsync(string? customerName = null,
         CancellationToken cancellationToken = default)
     {
-        logger.LogInformation("Getting orders from query store for customer {CustomerId}", customerId);
+        logger.LogInformation("Getting orders from query store for customer {CustomerId}", customerName);
 
         IQueryable<OrderReadModel> query = context.Orders;
 
-        if (customerId.HasValue)
+        if (!string.IsNullOrWhiteSpace(customerName))
         {
-            query = query.Where(o => o.CustomerId == customerId.Value);
+            query = query.Where(o => o.CustomerName == customerName);
         }
 
         var orders = await query
             .Select(o => new OrderSummaryDto
             {
                 Id = o.Id,
-                CustomerId = o.CustomerId,
+                CustomerName = o.CustomerName,
                 OrderDate = o.OrderDate,
                 Status = o.Status,
                 TotalAmount = o.TotalAmount,
@@ -71,7 +71,7 @@ public class QueryStore(QueryDbContext context, ILogger<QueryStore> logger) : IQ
             })
             .ToListAsync(cancellationToken);
 
-        logger.LogInformation("Retrieved {OrderCount} orders for customer {CustomerId}", orders.Count, customerId);
+        logger.LogInformation("Retrieved {OrderCount} orders for customer {CustomerId}", orders.Count, customerName);
         return orders;
     }
 
@@ -85,7 +85,7 @@ public class QueryStore(QueryDbContext context, ILogger<QueryStore> logger) : IQ
             .Select(o => new OrderSummaryDto
             {
                 Id = o.Id,
-                CustomerId = o.CustomerId,
+                CustomerName = o.CustomerName,
                 OrderDate = o.OrderDate,
                 Status = o.Status,
                 TotalAmount = o.TotalAmount,

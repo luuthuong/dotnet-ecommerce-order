@@ -16,7 +16,7 @@ namespace ecommerce_order.Migrations.QueryStore
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CustomerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CustomerName = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Street = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
@@ -66,9 +66,9 @@ namespace ecommerce_order.Migrations.QueryStore
                 column: "OrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderViews_CustomerId",
+                name: "IX_OrderViews_CustomerName",
                 table: "OrderViews",
-                column: "CustomerId");
+                column: "CustomerName");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderViews_Status",

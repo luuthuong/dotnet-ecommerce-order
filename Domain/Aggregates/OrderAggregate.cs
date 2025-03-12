@@ -10,7 +10,7 @@ public class OrderAggregate: AggregateRoot
     private readonly List<OrderItem> _items = new();
 
     public Guid Id { get; private set; }
-    public Guid CustomerId { get; private set; }
+    public string CustomerName { get; private set; }
     public DateTime OrderDate { get; private set; }
     public OrderStatus Status { get; private set; }
     public Address ShippingAddress { get; private set; }
@@ -47,7 +47,7 @@ public class OrderAggregate: AggregateRoot
         OrderCreatedEvent @event = new()
         {
             AggregateId = Guid.NewGuid(),
-            CustomerId = data.CustomerId,
+            CustomerName = data.CustomerName,
             OrderDate = DateTime.Now,
             Address = data.ShippingAddress,
             OrderItems = data.OrderItems
@@ -175,7 +175,7 @@ public class OrderAggregate: AggregateRoot
     void Apply(OrderCreatedEvent @event)
     {
         Id = @event.AggregateId;
-        CustomerId = @event.CustomerId;
+        CustomerName = @event.CustomerName;
         OrderDate = @event.OrderDate;
         Status = OrderStatus.Processing;
         TrackingNumber = Guid.NewGuid().ToString();

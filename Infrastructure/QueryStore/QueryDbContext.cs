@@ -15,7 +15,7 @@ public class QueryDbContext(DbContextOptions<QueryDbContext> options) : DbContex
             builder.ToTable("OrderViews");
             builder.HasKey(o => o.Id);
             builder.Property(o => o.Id).ValueGeneratedNever();
-            builder.Property(o => o.CustomerId).IsRequired();
+            builder.Property(o => o.CustomerName).IsRequired();
             builder.Property(o => o.OrderDate).IsRequired();
             builder.Property(o => o.Status).IsRequired().HasMaxLength(50);
             builder.Property(o => o.TotalAmount).HasColumnType("decimal(18, 2)");
@@ -50,7 +50,7 @@ public class QueryDbContext(DbContextOptions<QueryDbContext> options) : DbContex
                 }
             );
 
-            builder.HasIndex(o => o.CustomerId);
+            builder.HasIndex(o => o.CustomerName);
             builder.HasIndex(o => o.Status);
         });
     }

@@ -8,7 +8,7 @@ namespace ecommerce_order.Infrastructure.QueryStore;
 public class OrderReadModel
 {
     public Guid Id { get; private set; }
-    public Guid CustomerId { get; private set; }
+    public string CustomerName { get; private set; }
     public DateTime OrderDate { get; private set; }
     public string Status { get; private set; } = OrderStatus.Processing.ToString();
     public Address? ShippingAddress { get; private set; }
@@ -30,7 +30,7 @@ public class OrderReadModel
         return new OrderReadModel()
         {
             Id = @event.AggregateId,
-            CustomerId = @event.CustomerId,
+            CustomerName = @event.CustomerName,
             OrderDate = @event.OrderDate,
             Status = OrderStatus.Processing.ToString(),
             Items = @event.OrderItems.Select(item => new OrderItemReadModel()

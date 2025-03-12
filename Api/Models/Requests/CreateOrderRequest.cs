@@ -2,7 +2,7 @@ namespace ecommerce_order.Api.Models.Requests;
 
 public record CreateOrderRequest
 {
-    public Guid CustomerId { get; set; }
+    public string CustomerName { get; set; }
     public AddressRequest Address { get; set; }
     public List<OrderItemRequest> OrderItems { get; set; } = new();
 }

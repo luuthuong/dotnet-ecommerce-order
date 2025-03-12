@@ -25,14 +25,14 @@ export default function CheckoutPage() {
   const randomAddress = generateRandomAddress();
 
   const [formData, setFormData] = useState<{
-    customerId: string
+    customerName: string
     street: string
     city: string
     state: string
     zipCode: string
     country: string
   }>({
-    customerId: generateGUID(),
+    customerName: '',
     ...randomAddress
   })
 
@@ -70,7 +70,7 @@ export default function CheckoutPage() {
       }
 
       const orderRequest: CreateOrderRequest = {
-        customerId: formData.customerId,
+        customerName: formData.customerName,
         address,
         orderItems,
       }
@@ -114,13 +114,13 @@ export default function CheckoutPage() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <label htmlFor="customerId" className="block text-sm font-medium mb-1">
-                    Customer ID
+                  <label htmlFor="customerName" className="block text-sm font-medium mb-1">
+                    Customer Name
                   </label>
                   <Input
-                    id="customerId"
-                    name="customerId"
-                    value={formData.customerId}
+                    id="customerName"
+                    name="customerName"
+                    value={formData.customerName}
                     onChange={handleInputChange}
                     required
                   />

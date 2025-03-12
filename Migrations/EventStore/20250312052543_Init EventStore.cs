@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ecommerce_order.Migrations.EventStore
 {
     /// <inheritdoc />
-    public partial class InitDbEventStore : Migration
+    public partial class InitEventStore : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -17,7 +17,7 @@ public class CreateOrderCommandHandler(IOrderRepository orderRepository, ILogger
     {
         var order = OrderAggregate.Create(
             new(
-                request.CustomerId, 
+                request.CustomerName, 
                 request.ShippingAddress,
                 request.OrderItems.Select(
                     item => new OrderItem(item.ProductId, item.ProductName, item.UnitPrice, item.Quantity)
@@ -26,7 +26,7 @@ public class CreateOrderCommandHandler(IOrderRepository orderRepository, ILogger
         );
 
         _logger.LogInformation("Creating new order {OrderId} for customer {CustomerId}",
-            order.Id, request.CustomerId);
+            order.Id, request.CustomerName);
 
         await _orderRepository.SaveEventAsync(order, cancellationToken);
 

@@ -37,7 +37,7 @@ export default function OrdersPage() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h1>Your Orders</h1>
-        <div className="flex gap-2">
+        {/* <div className="flex gap-2">
           <Select value={statusFilter} onValueChange={setStatusFilter}>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="All Statuses" />
@@ -62,7 +62,7 @@ export default function OrdersPage() {
               <SelectItem value="price-low">Price: Low to High</SelectItem>
             </SelectContent>
           </Select>
-        </div>
+        </div> */}
       </div>
 
       {loading ? (

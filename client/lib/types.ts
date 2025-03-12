@@ -19,7 +19,7 @@ export interface GuidApiResponse {
 // Order Types
 export interface OrderSummaryDto {
   id: string
-  customerId: string
+  customerName: string
   orderDate: string
   status: string | null
   totalAmount: number
@@ -44,7 +44,7 @@ export interface ShippingAddress {
 
 export interface OrderDto {
   id: string
-  customerId: string
+  customerName: string
   orderDate: string
   status: string | null
   shippingAddress: ShippingAddress
@@ -79,7 +79,7 @@ export interface OrderItemRequest {
 }
 
 export interface CreateOrderRequest {
-  customerId: string
+  customerName: string
   address?: AddressRequest
   orderItems?: OrderItemRequest[]
 }

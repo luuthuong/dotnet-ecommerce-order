@@ -12,7 +12,7 @@ using ecommerce_order.Infrastructure.QueryStore;
 namespace ecommerce_order.Migrations.QueryStore
 {
     [DbContext(typeof(QueryDbContext))]
-    [Migration("20250311105645_Init QueryStore")]
+    [Migration("20250312052519_Init QueryStore")]
     partial class InitQueryStore
     {
         /// <inheritdoc />
@@ -34,8 +34,9 @@ namespace ecommerce_order.Migrations.QueryStore
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<Guid>("CustomerId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("CustomerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
@@ -63,7 +64,7 @@ namespace ecommerce_order.Migrations.QueryStore
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("CustomerName");
 
                     b.HasIndex("Status");
 

@@ -5,7 +5,7 @@ namespace ecommerce_order.Application.Commands;
 
 public class CreateOrderCommand : IRequest<Guid>
 {
-    public required Guid CustomerId { get; init; }
+    public required string CustomerName { get; init; }
     public required Address ShippingAddress { get; init; }
     public required IEnumerable<OrderItemDetails> OrderItems { get; init; }
 

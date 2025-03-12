@@ -39,8 +39,8 @@ async function fetchApi<T>(endpoint: string, options: RequestInit = {}): Promise
 }
 
 // Order API functions
-export async function getOrders(customerId?: string): Promise<ApiResponse<OrderSummaryDto[]>> {
-  const endpoint = customerId ? `/Orders?customerId=${customerId}` : "/Orders"
+export async function getOrders(customerName?: string): Promise<ApiResponse<OrderSummaryDto[]>> {
+  const endpoint = customerName ? `/Orders?customerName=${customerName}` : "/Orders"
   return fetchApi<ApiResponse<OrderSummaryDto[]>>(endpoint)
 }
 

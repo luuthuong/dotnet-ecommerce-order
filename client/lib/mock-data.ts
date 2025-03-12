@@ -75,7 +75,7 @@ export const products: Product[] = [
 export const orders: OrderSummaryDto[] = [
   {
     id: "1",
-    customerId: "customer-1",
+    customerName: "customer-1",
     orderDate: new Date(2023, 2, 15).toISOString(),
     status: "Completed",
     totalAmount: 125.0,
@@ -83,7 +83,7 @@ export const orders: OrderSummaryDto[] = [
   },
   {
     id: "2",
-    customerId: "customer-1",
+    customerName: "customer-1",
     orderDate: new Date(2023, 3, 20).toISOString(),
     status: "Processing",
     totalAmount: 75.0,
@@ -91,7 +91,7 @@ export const orders: OrderSummaryDto[] = [
   },
   {
     id: "3",
-    customerId: "customer-1",
+    customerName: "customer-1",
     orderDate: new Date(2023, 4, 5).toISOString(),
     status: "Shipped",
     totalAmount: 210.0,
@@ -103,7 +103,7 @@ export const orders: OrderSummaryDto[] = [
 export const orderDetails: Record<string, OrderDto> = {
   "1": {
     id: "1",
-    customerId: "customer-1",
+    customerName: "customer-1",
     orderDate: new Date(2023, 2, 15).toISOString(),
     status: "Completed",
     shippingAddress: {
@@ -145,7 +145,7 @@ export const orderDetails: Record<string, OrderDto> = {
   },
   "2": {
     id: "2",
-    customerId: "customer-1",
+    customerName: "customer-1",
     orderDate: new Date(2023, 3, 20).toISOString(),
     status: "Processing",
     shippingAddress: {
@@ -173,7 +173,7 @@ export const orderDetails: Record<string, OrderDto> = {
   },
   "3": {
     id: "3",
-    customerId: "customer-1",
+    customerName: "customer-1",
     orderDate: new Date(2023, 4, 5).toISOString(),
     status: "Shipped",
     shippingAddress: {
@@ -226,7 +226,7 @@ export const orderEvents: Record<
       eventType: "OrderCreated",
       timestamp: new Date(2023, 2, 15, 10, 0).toISOString(),
       data: {
-        customerId: "customer-1",
+        customerName: "customer-1",
         items: [],
       },
     },
@@ -308,7 +308,7 @@ export const orderEvents: Record<
       eventType: "OrderCreated",
       timestamp: new Date(2023, 3, 20, 14, 0).toISOString(),
       data: {
-        customerId: "customer-1",
+        customerName: "customer-1",
         items: [],
       },
     },
@@ -356,7 +356,7 @@ export const orderEvents: Record<
       eventType: "OrderCreated",
       timestamp: new Date(2023, 4, 5, 11, 0).toISOString(),
       data: {
-        customerId: "customer-1",
+        customerName: "customer-1",
         items: [],
       },
     },

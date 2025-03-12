@@ -6,7 +6,7 @@ namespace ecommerce_order.Domain.Events;
 
 public record OrderCreatedEvent : DomainEvent
 {
-    public required Guid CustomerId { get; init; }
+    public required string CustomerName { get; init; }
     public required DateTime OrderDate { get; init; }
 
     public required Address Address { get; init; }

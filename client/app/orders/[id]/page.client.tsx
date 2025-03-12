@@ -198,6 +198,10 @@ export default function OrderDetailPage({ id }: OrderDetailPageProps) {
             <h2 className="text-lg font-medium mb-4">Order Information</h2>
             <div className="space-y-4">
               <div>
+              <h3 className="text-sm font-medium text-muted-foreground">Customer Name</h3>
+              <p className="mt-1">{order.customerName}</p>
+              </div>
+              <div>
                 <h3 className="text-sm font-medium text-muted-foreground">Shipping Address</h3>
                 <p className="mt-1">{`${order.shippingAddress.street}, ${order.shippingAddress.city}, ${order.shippingAddress.state} ${order.shippingAddress.zipCode}, ${order.shippingAddress.country}` || "Not provided"}</p>
               </div>

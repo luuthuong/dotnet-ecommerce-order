@@ -12,8 +12,8 @@ using ecommerce_order.Infrastructure.EventStore;
 namespace ecommerce_order.Migrations.EventStore
 {
     [DbContext(typeof(EventStoreDbContext))]
-    [Migration("20250310135051_Init Db EventStore")]
-    partial class InitDbEventStore
+    [Migration("20250312052543_Init EventStore")]
+    partial class InitEventStore
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

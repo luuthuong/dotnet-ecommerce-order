@@ -104,7 +104,7 @@ Our event store uses a single table with the following structure:
 | Timestamp   | datetime2        | When the event occurred             |
 | Version     | int              | Sequence number for the aggregate   |
 | EventType   | nvarchar(255)    | The .NET type name of the event     |
-| EventData   | nvarchar(max)    | Serialized JSON event data          |
+| Payload     | nvarchar(max)    | Serialized JSON event data          |
 
 #### Aggregate Reconstruction Process
 
@@ -185,7 +185,7 @@ Our application follows Clean Architecture principles, organizing code in concen
 - **Maintainability**: Clear separation of concerns makes the codebase easier to understand
 - **Independence**: Business rules don't depend on UI, database, or external frameworks
 
-### Project Structure
+### Backend Project Structure
 
 Our solution is organized according to Clean Architecture principles:
 
@@ -367,6 +367,19 @@ dotnet ef database update --context EventStoreDbContext
 
 # For the Query Store
 dotnet ef database update --context QueryDbContext
+```
+
+### Database Migrations
+
+To add a new migration, use the following command:
+
+```bash
+
+  # For the Event Store
+   dotnet ef migrations add '{message}' --context EventStoreDbContext -o Migrations/EventStore
+   
+  # For the Query Store
+   dotnet ef migrations add '{message}' --context QueryDbContext -o Migrations/EventStore
 ```
 
 ## API Reference
