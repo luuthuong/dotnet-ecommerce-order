@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ecommerce-order", "ecommerc
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3A1325A0-6444-4450-9B93-5C9C54EB4755}"
 	ProjectSection(SolutionItems) = preProject
-		compose.yaml = compose.yaml
+		compose.yaml = ../compose.yaml
 	EndProjectSection
 EndProject
 Global

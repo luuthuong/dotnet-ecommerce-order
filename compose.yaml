@@ -1,7 +1,7 @@
 ﻿services:
   backend:
     build:
-      context: .
+      context: api
       dockerfile: Dockerfile
     hostname: backend.ecommerce-order
     image: luuthuong/dotnet-ecommerce-order:${TAG:-v1.1.0}
@@ -17,6 +17,7 @@
       - ConnectionStrings__EventStore=host=postgresql;port=5432;User Id=postgres;pwd=YourStr0ngP@ssw0rd;database=ECommerceEventStore
       - ConnectionStrings__QueryStore=host=postgresql;port=5432;User Id=postgres;pwd=YourStr0ngP@ssw0rd;database=ECommerceQueryStore
       - DatabaseProvider=Postgresql
+#        // host=postgres;port=5432;User Id=postgres;pwd=iEUpzblsaLJImceHAgsWiKJVgkFABVbt;database=ECommerceEventStore
     depends_on:
       postgresql:
         condition: service_started
