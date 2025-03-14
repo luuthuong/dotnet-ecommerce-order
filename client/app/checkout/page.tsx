@@ -75,19 +75,23 @@ export default function CheckoutPage() {
         orderItems,
       }
 
-      const response = await createOrder(orderRequest);
+      const response = await createOrder(orderRequest).catch((error) => {
+        setFormError("There was an error processing your order. Please try again.")
+        setCheckoutError(error as string || "There was an error processing your order. Please try again.")
+        return null;
+      });
 
-      setOrderId(response.data)
+      if (!response) {
+        return;
+      }
+
+      setOrderId(response?.data)
       clearCart()
       setCheckoutSuccess(true)
       setCheckoutComplete(true)
 
     } catch (error) {
       console.error("Error creating order:", error)
-      setFormError("There was an error processing your order. Please try again.")
-      setCheckoutError(error as string || "There was an error processing your order. Please try again.")
-      setCheckoutSuccess(false)
-      setCheckoutComplete(true)
     } finally {
       setIsSubmitting(false)
     }

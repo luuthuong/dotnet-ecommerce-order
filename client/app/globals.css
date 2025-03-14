@@ -21,6 +21,13 @@
 
   --card: 255, 255, 255;
   --card-foreground: 0, 0, 0;
+
+  --popover: 255, 255, 255;
+  --popover-foreground: 0, 0, 0;
+
+  --border: 229, 231, 235;
+  --input: 229, 231, 235;
+  --ring: 59, 130, 246;
 }
 
 .dark {
