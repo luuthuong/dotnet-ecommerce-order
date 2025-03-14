@@ -12,8 +12,8 @@ class UserStore {
     private users: Map<string, StoredUser> = new Map()
 
     constructor() {
-        this.users.set("demo-user-id", {
-            id: uuidv4(),
+        this.users.set("4ef8f9c6-01e5-463c-b875-0b8e84e2c1ec", {
+            id: "4ef8f9c6-01e5-463c-b875-0b8e84e2c1ec",
             email: "user@example.com",
             password: "password123",
             firstName: "John",

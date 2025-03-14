@@ -78,7 +78,7 @@ export default function Header() {
           {isAuthenticated ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="relative grid h-8 w-8 rounded-full">
+                <Button variant="default" className="relative grid rounded-full h-10 w-10 place-items-center">
                   <User2Icon className="h-5 w-5" />
                 </Button>
               </DropdownMenuTrigger>

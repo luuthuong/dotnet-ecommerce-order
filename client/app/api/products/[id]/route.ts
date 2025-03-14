@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { dataStore, findProductById } from "@/lib/data-store"
 import { PromiseParams } from "@/lib/types"
+import { setTimeout } from "timers/promises";
 
 // Use the shared data store
 const products = dataStore.products
@@ -9,6 +10,8 @@ export async function GET(request: NextRequest, { params }: PromiseParams<{ id: 
   try {
     const { id } = await params;
     const product = findProductById(id)
+
+    await setTimeout(1000)
 
     if (!product) {
       return NextResponse.json(
@@ -90,6 +93,7 @@ export async function PUT(request: NextRequest, { params }: PromiseParams<{ id: 
 
 export async function DELETE(request: NextRequest, { params }: PromiseParams<{ id: string }>) {
   try {
+    const { id } = await params;
     const productIndex = products.findIndex((p) => p.id === id)
 
     if (productIndex === -1) {

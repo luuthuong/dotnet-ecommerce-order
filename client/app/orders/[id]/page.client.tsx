@@ -134,7 +134,7 @@ export default function OrderDetailPage({ id }: OrderDetailPageProps) {
   return (
     <div className="space-y-8">
       <div>
-        <Link href="/orders" className="text-sm text-muted-foreground hover:text-primary flex items-center gap-1">
+        <Link href="/orders" className="flex gap-2 text-sm text-muted-foreground hover:underline hover:text-black">
           <ArrowLeft className="w-4 h-4" />
           Back to Orders
         </Link>
@@ -291,13 +291,13 @@ export function OrderAction(
     <div className="space-y-2">
       {
         order.status !== orderStatus.paid &&
-        <Button className="w-full" variant="outline" onClick={onClickPayment}>
+        <Button className="w-full" onClick={onClickPayment}>
           Pay Now
         </Button>
       }
       {
         order.status !== orderStatus.paid &&
-        <Button className="w-full" variant="outline" onClick={onClickUpdateShippingAddress}>
+        <Button className="w-full" onClick={onClickUpdateShippingAddress}>
           Update Shipping Address
         </Button>
       }

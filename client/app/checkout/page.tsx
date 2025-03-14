@@ -231,7 +231,7 @@ export default function CheckoutPage() {
               )}
 
               <CardFooter className="flex justify-between">
-                <Button type="button" variant="outline" onClick={() => router.push("/cart")} disabled={isSubmitting}>
+                <Button type="button" variant="default" onClick={() => router.push("/cart")} disabled={isSubmitting}>
                   Back to Cart
                 </Button>
                 <Button type="submit" disabled={isSubmitting}>

@@ -53,7 +53,7 @@ export default function OrderCard({ order }: OrderCardProps) {
 
       <div className="flex justify-between items-center mt-4">
         <span className="font-semibold">${order.totalAmount.toFixed(2)}</span>
-        <Link href={`/orders/${order.id}`} className="text-sm font-medium text-primary hover:underline">
+        <Link href={`/orders/${order.id}`} className="text-sm font-medium text-black underline">
           View Details
         </Link>
       </div>

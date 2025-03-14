@@ -69,7 +69,7 @@ export default function OrderHistoryExplorer() {
 
           if (filters.searchTerm) {
             const searchLower = filters.searchTerm.toLowerCase()
-            return order.id.toLowerCase().includes(searchLower) || order.customerId.toLowerCase().includes(searchLower)
+            return order.id.toLowerCase().includes(searchLower) || order.customerName.toLowerCase().includes(searchLower)
           }
 
           return true
@@ -272,7 +272,7 @@ export default function OrderHistoryExplorer() {
             </div>
           </CardContent>
           <CardFooter className="flex justify-between">
-            <Button variant="outline" onClick={clearFilters}>
+            <Button onClick={clearFilters}>
               <X className="w-4 h-4 mr-2" />
               Clear Filters
             </Button>
@@ -296,7 +296,7 @@ export default function OrderHistoryExplorer() {
               filters.status !== "all" ||
               filters.eventType !== "all" ||
               filters.searchTerm) && (
-                <Button variant="outline" onClick={clearFilters} className="mt-4">
+                <Button  onClick={clearFilters} className="mt-4">
                   Clear Filters
                 </Button>
               )}
@@ -354,7 +354,6 @@ export default function OrderHistoryExplorer() {
                   {!eventLoading[order.id] && !eventErrors[order.id] && (
                     <div className="mt-4 flex justify-end">
                       <Button
-                        variant="outline"
                         size="sm"
                         onClick={() => {
                           setOrderEvents((prev) => ({ ...prev, [order.id]: undefined }))

@@ -9,7 +9,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   return (
-    <div className="group relative bg-card rounded-lg overflow-hidden shadow-sm border hover:shadow-md transition-shadow">
+    <div className="group relative bg-card rounded-sm overflow-hidden shadow-sm border border-black hover:shadow-md transition-shadow">
     <div className="aspect-square overflow-hidden">
       <Image
         src={product.image || "/placeholder.svg?height=300&width=300"}

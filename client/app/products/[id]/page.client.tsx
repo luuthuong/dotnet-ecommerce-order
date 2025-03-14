@@ -34,11 +34,11 @@ export default function ProductPageClient({ id: productId }: ProductPageClientPr
         const response = await getProductById(productId)
         setProduct(response.data)
 
-        // Set default color and size
         if (response.data.colors?.length > 0) {
           setSelectedColor(response.data.colors[0])
         }
-        if (response.data.sizes?.length > 0) {
+        
+        if (response?.data?.sizes?.length) {
           setSelectedSize(response.data.sizes[0])
         }
 
@@ -83,7 +83,7 @@ export default function ProductPageClient({ id: productId }: ProductPageClientPr
     return (
       <div className="py-12 text-center">
         <p className="text-red-500">{error || "Product not found"}</p>
-        <Link href="/">
+        <Link href="/" className="hover:underline hover:!text-black">
           <Button className="mt-4">Back to Products</Button>
         </Link>
       </div>
@@ -92,7 +92,7 @@ export default function ProductPageClient({ id: productId }: ProductPageClientPr
 
   return (
     <div className="grid md:grid-cols-2 gap-8">
-      <div className="aspect-square relative overflow-hidden rounded-lg">
+      <div className="aspect-square relative overflow-hidden rounded-lg border h-full">
         <Image
           src={product.image || "/placeholder.svg?height=600&width=600"}
           alt={product.name}
@@ -104,7 +104,7 @@ export default function ProductPageClient({ id: productId }: ProductPageClientPr
       <Card>
         <CardContent className="pt-6 space-y-6">
           <div>
-            <Link href="/" className="text-sm text-muted-foreground hover:text-primary">
+            <Link href="/" className="text-sm text-muted-foreground hover:underline hover:text-black">
               ← Back to products
             </Link>
             <h1 className="mt-2 text-3xl font-bold">{product.name}</h1>
@@ -132,8 +132,11 @@ export default function ProductPageClient({ id: productId }: ProductPageClientPr
                 {product.sizes.map((size) => (
                   <Button
                     key={size}
-                    variant={selectedSize === size ? "default" : "outline"}
-                    onClick={() => setSelectedSize(size)}
+                    variant={selectedSize == size ? "secondary" : "default"}
+                    onClick={() => {
+                      console.log('select size', size)
+                      setSelectedSize(size)
+                    }}
                   >
                     {size}
                   </Button>
@@ -148,7 +151,7 @@ export default function ProductPageClient({ id: productId }: ProductPageClientPr
               {product.colors.map((color, index) => (
                 <button
                   key={index}
-                  className={`w-8 h-8 rounded-full border-2 ${selectedColor === color ? "border-primary" : "border-muted"}`}
+                  className={`w-8 h-8 rounded-full border-2 ${selectedColor === color ? "border" : "border-muted"}`}
                   style={{ backgroundColor: color }}
                   onClick={() => setSelectedColor(color)}
                 />
@@ -159,11 +162,11 @@ export default function ProductPageClient({ id: productId }: ProductPageClientPr
           <div>
             <h3 className="text-lg font-medium mb-2">Quantity</h3>
             <div className="flex items-center">
-              <Button variant="outline" size="icon" onClick={decrementQuantity}>
+              <Button variant="default" size="icon" onClick={decrementQuantity}>
                 <Minus className="w-4 h-4" />
               </Button>
               <span className="w-16 text-center">{quantity}</span>
-              <Button variant="outline" size="icon" onClick={incrementQuantity}>
+              <Button variant="default" size="icon" onClick={incrementQuantity}>
                 <Plus className="w-4 h-4" />
               </Button>
             </div>

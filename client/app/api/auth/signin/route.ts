@@ -23,6 +23,7 @@ export async function POST(request: NextRequest) {
         console.log("User signed in:", user)
 
         const sessionId = uuidv4()
+
         cookies.set("session_id", sessionId, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
@@ -36,6 +37,7 @@ export async function POST(request: NextRequest) {
             maxAge: 60 * 60 * 24 * 7, // 1 week
             path: "/",
         })
+
         const { password: _, ...userWithoutPassword } = user
         return NextResponse.json({ user: userWithoutPassword })
     } catch (error) {

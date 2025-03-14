@@ -70,11 +70,11 @@ export default function CartPage() {
                     </div>
 
                     <div className="flex items-center gap-2">
-                      <Button variant="outline" size="icon" onClick={() => updateQuantity(item.id, item.quantity - 1)}>
+                      <Button size="icon" onClick={() => updateQuantity(item.id, item.quantity - 1)}>
                         <Minus className="w-4 h-4" />
                       </Button>
                       <span className="w-8 text-center">{item.quantity}</span>
-                      <Button variant="outline" size="icon" onClick={() => updateQuantity(item.id, item.quantity + 1)}>
+                      <Button size="icon" onClick={() => updateQuantity(item.id, item.quantity + 1)}>
                         <Plus className="w-4 h-4" />
                       </Button>
                     </div>
@@ -84,7 +84,7 @@ export default function CartPage() {
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="text-red-500 hover:text-red-700 mt-1"
+                        className="text-red-500 hover:text-red-700 hover:bg-transparent mt-1"
                         onClick={() => removeItem(item.id)}
                       >
                         <Trash2 className="w-4 h-4 mr-1" />
@@ -125,7 +125,7 @@ export default function CartPage() {
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
               <Link href="/" className="w-full">
-                <Button variant="outline" className="w-full">
+                <Button className="w-full">
                   Continue Shopping
                 </Button>
               </Link>

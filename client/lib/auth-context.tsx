@@ -46,10 +46,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const router = useRouter()
 
     useEffect(() => {
-        // Check if user is already logged in
         const checkAuthStatus = async () => {
             try {
-                const response = await fetch("/api/auth/me")
+                const response = await fetch("/api/auth/me",{method: "GET"})
                 if (response.ok) {
                     const data = await response.json()
                     setUser(data.user)

@@ -21,6 +21,11 @@ export default function SignInPage() {
   const searchParams = useSearchParams()
   const redirect = searchParams.get("redirect") || "/"
 
+  const demoAccount = {
+    email: "user@example.com",
+    password: "password123",
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError(null)
@@ -37,8 +42,8 @@ export default function SignInPage() {
   }
 
   const useDemoAccount = () => {
-    setEmail("user@example.com")
-    setPassword("password123")
+    setEmail(demoAccount.email)
+    setPassword(demoAccount.password)
   }
 
   return (
@@ -49,13 +54,13 @@ export default function SignInPage() {
           <CardDescription>Enter your credentials to access your account</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="bg-blue-50 p-4 rounded-md flex items-start gap-3 text-blue-700 mb-4">
+          <div className="border p-4 rounded-md flex items-start gap-3  mb-4">
             <Info className="h-5 w-5 mt-0.5" />
             <div>
               <p className="font-medium">Demo Account</p>
-              <p className="text-sm">Email: user@example.com</p>
-              <p className="text-sm">Password: password123</p>
-              <Button variant="outline" size="sm" className="mt-2 text-xs" onClick={useDemoAccount}>
+              <p className="text-sm">Email: {demoAccount.email}</p>
+              <p className="text-sm">Password: {demoAccount.password}</p>
+              <Button  size="sm" className="mt-2 text-xs" onClick={useDemoAccount}>
                 Use Demo Account
               </Button>
             </div>
@@ -86,9 +91,9 @@ export default function SignInPage() {
                 <label htmlFor="password" className="text-sm font-medium">
                   Password
                 </label>
-                <Link href="/forgot-password" className="text-sm text-primary hover:underline">
+                {/* <Link href="/forgot-password" className="text-sm hover:underline">
                   Forgot password?
-                </Link>
+                </Link> */}
               </div>
               <Input
                 id="password"
@@ -107,7 +112,7 @@ export default function SignInPage() {
         <CardFooter className="flex justify-center">
           <p className="text-sm text-muted-foreground">
             Don&apos;t have an account?{" "}
-            <Link href="/signup" className="text-primary hover:underline">
+            <Link href="/signup" className="text-black hover:underline">
               Sign up
             </Link>
           </p>
