@@ -64,7 +64,7 @@ export default function Header() {
 
         <div className="flex items-center gap-2">
           <Link href="/cart">
-            <Button variant="outline" className="relative">
+            <Button className="relative">
               <ShoppingCart size={18} />
               <span className="ml-2">Cart</span>
               {itemCount > 0 && (
