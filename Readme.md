@@ -14,6 +14,9 @@
 
 This project implements an E-Commerce Order Management system using Event Sourcing and CQRS (Command Query Responsibility Segregation) patterns. Instead of storing just the current state of orders, the system stores a complete history of events that led to the current state, providing a complete audit trail and enabling advanced business analytics.
 
+![ecomerce-order](https://github.com/user-attachments/assets/71f897c4-2c36-432a-8de9-e47749a2d3bc)
+
+
 ### Key Features
 
 - Complete order lifecycle management from creation to delivery
