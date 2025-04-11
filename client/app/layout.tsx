@@ -6,6 +6,7 @@ import Header from "@/components/layout/header"
 import { CartProvider } from "@/lib/cart-context"
 import ProtectedRoute from "@/components/auth/protected-route"
 import { AuthProvider } from "@/lib/auth-context"
+import MotionWrapper from "@/components/motion/motion-wrapper"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -27,7 +28,9 @@ export default function RootLayout({
           <ProtectedRoute>
             <CartProvider>
               <Header />
-              <main className="container mx-auto px-4 py-6">{children}</main>
+              <MotionWrapper>
+                <main className="container mx-auto px-4 py-6">{children}</main>
+              </MotionWrapper>
             </CartProvider>
           </ProtectedRoute>
         </AuthProvider>
